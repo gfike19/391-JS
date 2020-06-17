@@ -65,7 +65,7 @@
         function remove(item) {
 
             var prevNode = this.findPrevious(item);
-            if (!(prevNode.next == null)) {
+            if (!(prevNode.next == "head")) {
 
                 prevNode.next = prevNode.next.next;
             }
