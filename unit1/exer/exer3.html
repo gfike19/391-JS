@@ -6,14 +6,9 @@
     <meta charset="utf-8">
 
     <title>Exercise 3</title>
-
-</head>
-
-<body>
-
     <script type="text/javascript">
 
-        function Node(data, left, right) {
+        function Node(data="java2s.com", left, right) {
 
             this.data = data;
 
@@ -118,7 +113,7 @@
             }
         }
 
-
+        function main(){
         var nums = new BST();
 
         document.write("Building the new with root value of 50" + "</br>");
@@ -135,14 +130,12 @@
 
         document.write("Inorder Traversal:" + "</br>");
         inOrder(nums.root);
-
+        }
     </script>
 
-    Building the new with root value of 50 <br>30 inserted to the left of 50<br>45 inserted to the right of
+</head>
 
-    30<br>12 inserted to the left of 30<br>29 inserted to the right of 12<br>lnorder Traversal: <br>traversed
-
-    12<br>traversed 29<br>traversed 30<br>traversed 45<br>traversed 50<br>
+<body onload="main()">
 
 </body>
 

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title> Queues</title>
+    <script type="text/javascript">
+        function main() {
+            let shoppers = [];
+            shoppers.push("Jane", "Bob", "Liza", "Tom", "Mary");
+            document.write("The number of shoppers in line at the grocery store when the door opens is " + shoppers.length);
+
+            for (let i = 0; i < shoppers.length; i++) {
+                docoument.write(shoppers[i]);
+            }
+
+            document.write("The first person in line is: " + shoppers[0] + "<br>");
+
+            shoppers.shift("Jane");
+            shoppers.push("Stephen", "Ellen");
+            document.writeln("Stephen and Ellen have entered the line.<br>");
+
+            shoppers.shift("Bob");
+            shoppers.shift("Liza");
+            shoppers.shift("Tom");
+
+            document.write("The number of shoppers in line at the grocrey store after 4 customers have checked out is " + shopper.length + "<br>");
+            document.write("The first person in line is now " + shoppers[0]);
+        }
+    </script>
+</head>
+
+<body onload="main()">
+
+</body>
+
+</html>
