@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>Exercise 3</title>
     <script type="text/javascript">
 
-        function Node(data="java2s.com", left, right) {
+        function Node(data = "java2s.com", left, right) {
             this.data = data;
             this.left = left;
             this.right = right;
@@ -39,18 +40,18 @@
                             parent.left = n;
                             document.write(data + " inserted to the left of " + parent.show() + "<br>");
                             break;
-                        } else {
-                            current = current.right;
-                            if (current == null) {
-                                parent.right = n;
-                                document.write(data + " inserted to the right of " + parent.show() + "<br>");
-                                break;
-                            }
-                        }//end of else
-                    }//end of if
-                }//end of while
-            }//end of else
-        }//end of function
+                        }
+                    } else {
+                        current = current.right;
+                        if (current == null) {
+                            parent.right = n;
+                            document.write(data + " inserted to the right of " + parent.show() + "<br>");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
 
         function inOrder(Node) {
             if (!(Node == null)) {
@@ -76,19 +77,21 @@
             }
         }
 
-        function main(){
-        var nums = new BST();
-        document.write("Building the new with root value of 50" + "</br>");
-        nums.insert(50);
-        nums.insert(30);
-        nums.insert(45);
-        nums.insert(12);
-        nums.insert(29);
-        document.write("Inorder Traversal:" + "</br>");
-        inOrder(nums.root);
+        function main() {
+            var nums = new BST();
+            document.write("Building the new with root value of 50" + "</br>");
+            nums.insert(50);
+            nums.insert(30);
+            nums.insert(45);
+            nums.insert(12);
+            nums.insert(29);
+            document.write("Inorder Traversal:" + "</br>");
+            inOrder(nums.root);
         }
     </script>
 </head>
+
 <body onload="main()">
 </body>
+
 </html>
