@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Unit 1 Assignment 4</title>
+    <script type="text/javascript">
+        function Node(data = "java2s.com", left, right) {
+            this.data = data;
+            this.left = left;
+            this.right = right;
+            this.show = show;
+        }
+
+        function show() {
+            return this.data;
+        }
+
+        function BST() {
+            this.root = null;
+            this.insert = insert;
+            this.inOrder = inOrder;
+            this.preOrder = preOrder;
+            this.postOrder = postOrder;
+            this.traverse = traverse;
+        }
+
+        function insert(data) {
+            var n = new Node(data, null, null);
+            if (this.root == null) {
+                this.root = n;
+            } else {
+                var current = this.root;
+                var parent;
+                while (true) {
+                    parent = current;
+                    if (data < current.data) {
+                        current = current.left;
+                        if (current == null) {
+                            parent.left = n;
+                            document.write(data + " inserted to the left of " + parent.show() + "<br>");
+                            break;
+                        }
+                    } else {
+                        current = current.right;
+                        if (current == null) {
+                            parent.right = n;
+                            document.write(data + " inserted to the right of " + parent.show() + "<br>");
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+        function inOrder(Node) {
+            if (!(Node == null)) {
+                inOrder(Node.left);
+                document.write("traversed " + Node.show() + "<br>");
+                inOrder(Node.right);
+            }
+        }
+
+        function preOrder(Node) {
+            if (!(Node == null)) {
+                document.write("traversed " + Node.show() + "<br>");
+                preOrder(Node.left);
+                preOrder(Node.right);
+            }
+        }
+
+        function postOrder(Node) {
+            if (!(Node == null)) {
+                postOrder(Node.left);
+                postOrder(Node.right);
+                document.write("traversed " + Node.show() + "<br>");
+            }
+        }
+
+        function traverse() {
+            var line = "*************************";
+            document.write("Traversing the tree in order<br>" + line + "<br>");
+            this.inOrder(this.root);
+            document.write("<br>Traversing the tree in preorder<br>" + line + "<br>")
+            this.preOrder(this.root);
+            document.write("<br>Traversing the tree in postorder<br>" + line + "<br>")
+            this.postOrder(this.root);
+        }
+
+        function main(){
+            document.write("Building the tree with root value 50<br>");
+            var nums = new BST();
+            nums.insert(50);
+            nums.insert(26);
+            nums.insert(15);
+            nums.insert(32);
+            nums.insert(78);
+            document.write("<br>")
+            nums.traverse();
+        }
+    </script>
+</head>
+<body onload="main()">
+</body>
+</html>
