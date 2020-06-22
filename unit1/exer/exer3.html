@@ -1,81 +1,49 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="utf-8">
-
     <title>Exercise 3</title>
     <script type="text/javascript">
 
         function Node(data="java2s.com", left, right) {
-
             this.data = data;
-
             this.left = left;
-
             this.right = right;
-
             this.show = show;
-
         }
 
         function show() {
-
             return this.data;
         }
 
         function BST() {
-
             this.root = null;
-
             this.insert = insert;
-
             this.inOrder = inOrder;
-
             this.preOrder = preOrder;
-
             this.postOrder = postOrder;
         }
+
         function insert(data) {
-
             var n = new Node(data, null, null);
-
             if (this.root == null) {
-
                 this.root = n;
-
             } else {
-
                 var current = this.root;
-
                 var parent;
-
                 while (true) {
-
                     parent = current;
-
                     if (data < current.data) {
-
                         current = current.left;
-
                         if (current == null) {
-
                             parent.left = n;
-
                             document.write(data + " inserted to the left of " + parent.show() + "<br>");
-
                             break;
                         } else {
-
                             current = current.right;
-
                             if (current == null) {
-
                                 parent.right = n;
-
                                 document.write(data + " inserted to the right of " + parent.show() + "<br>");
-
                                 break;
                             }
                         }
@@ -83,31 +51,26 @@
                 }
             }
         }
+
         function inOrder(Node) {
-
             if (!(Node == null)) {
-
                 inOrder(Node.left);
                 document.write("traversed " + Node.show() + "<br>");
-
                 inOrder(Node.right);
             }
         }
+
         function preOrder(Node) {
-
             if (!(Node == null)) {
-
                 document.write(Node.show() + " ");
                 preOrder(Node.left);
                 preOrder(Node.right);
             }
         }
+
         function postOrder(Node) {
-
             if (!(Node == null)) {
-
                 postOrder(Node.left);
-
                 postOrder(Node.right);
                 document.write(Node.show() + " ");
             }
@@ -115,28 +78,17 @@
 
         function main(){
         var nums = new BST();
-
         document.write("Building the new with root value of 50" + "</br>");
-
         nums.insert(50);
-
         nums.insert(30);
-
         nums.insert(45);
-
         nums.insert(12);
-
         nums.insert(29);
-
         document.write("Inorder Traversal:" + "</br>");
         inOrder(nums.root);
         }
     </script>
-
 </head>
-
 <body onload="main()">
-
 </body>
-
 </html>
