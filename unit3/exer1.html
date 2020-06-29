@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Assignment 1</title>
+        <script type="text/javascript">
+            function main(){
+                for(var counter = 1; counter <= 4; counter++) {
+                    document.write(counter + " " + "= " + factorial(counter) + "<br>");
+                }
+            }
+
+            function factorial(n) {
+                if(n === 0) {
+                    return 1;
+                }
+
+                return n* factorial(n-1);
+            }
+        </script>
+    </head>
+    <body onload="main()">
+    </body>
+</html>
