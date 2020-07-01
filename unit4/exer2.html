@@ -12,26 +12,23 @@
             document.write("The sorted list is<br>");
             bubbleSort(intArray);
             intArray.forEach(element => document.write(element + "<br>"));
-            // intArray.forEach(function(element, index){
-            //     document.write("Element is: " + element + " Index is: " + index + "<br>");
-            // })
         }
 
         function bubbleSort(array) {
             var swapped;
             do {
                 swapped = false;
-                array.forEach(function (element, index) {
-                    if (element > array[index + 1]) {
-                        var temp = element + 0;
-                        element = array[index + 1] + 0;
-                        array[index + 1] = temp + 0;
+                for (var i = 0; i < array.length; i++) {
+                    if (array[i] > array[i + 1]) {
+                        var temp = array[i];
+                        array[i] = array[i + 1];
+                        array[i + 1] = temp;
                         swapped = true;
                     }
-                });
+                }
             } while (swapped);
-
         }
+
     </script>
 </head>
 
