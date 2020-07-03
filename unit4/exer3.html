@@ -5,117 +5,135 @@
     <meta charset="utf-8">
     <title>Unit 4 Exercise 3</title>
     <script type="text/javascript">
-        function Node(data = "java2s.com", left, right) {
-            this.data = data;
-            this.left = left;
-            this.right = right;
-            this.show = show;
-        }
+        var nums;
+        function main() {
+            let display = document.getElementById("display");
 
-        function show() {
-            return this.data;
-        }
-
-        function BST() {
-            this.root = null;
-            this.insert = insert;
-            this.inOrder = inOrder;
-            this.preOrder = preOrder;
-            this.postOrder = postOrder;
-            this.traverse = traverse;
-            this.find = find;
-        }
-
-        function find(data=document.getElementById("val")){
-            var current = this.root;
-            while(current.data != data) {
-                if(data < current.data) {
-                    current = current.left;
-                } else {
-                    current = current.right;
-                }
-                if(current == null) {
-                    document.write("The value " + data + " was not found.");
-                    return null;
-                }
-
-                if(current != null) {
-                    document.write("The value " + data + " was found.");
-                    return current;
-                }
+            function Node(data, left, right) {
+                this.data = data;
+                this.left = left;
+                this.right = right;
+                this.show = show;
             }
-        }
 
-        function insert(data) {
-            var n = new Node(data, null, null);
-            if (this.root == null) {
-                this.root = n;
-            } else {
+            function show() {
+                return this.data;
+            }
+
+            function BST() {
+                this.root = null;
+                this.insert = insert;
+                this.inOrder = inOrder;
+                this.preOrder = preOrder;
+                this.postOrder = postOrder;
+                this.find = find;
+                this.show = show;
+            }
+
+            function find(data, displayElement) {
+                let ele = document.getElementById(displayElement);
                 var current = this.root;
-                var parent;
-                while (true) {
-                    parent = current;
+                while (current.data != null) {
                     if (data < current.data) {
                         current = current.left;
-                        if (current == null) {
-                            parent.left = n;
-                            document.write(data + " inserted to the left of " + parent.show() + "<br>");
-                            break;
-                        }
                     } else {
                         current = current.right;
-                        if (current == null) {
-                            parent.right = n;
-                            document.write(data + " inserted to the right of " + parent.show() + "<br>");
-                            break;
+                    }
+                    if (current != data) {
+                        ele.innerHTML += ("The value " + data + " was not found.<br>");
+                        return null;
+                    }
+
+                    if (current == data) {
+                        ele.innerHTML += ("The value " + data + " was found.<br>");
+                        return current;
+                    }
+                }
+            }
+
+            function insert(data) {
+                var n = new Node(data, null, null);
+                if (this.root == null) {
+                    this.root = n;
+                } else {
+                    var current = this.root;
+                    var parent;
+                    while (true) {
+                        parent = current;
+                        if (data < current.data) {
+                            current = current.left;
+                            if (current == null) {
+                                parent.left = n;
+                                display.innerHTML += (data + " inserted to the left of " + parent.show() + "<br>");
+                                break;
+                            }
+                        } else {
+                            current = current.right;
+                            if (current == null) {
+                                parent.right = n;
+                                display.innerHTML += (data + " inserted to the right of " + parent.show() + "<br>");
+                                break;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        function inOrder(Node) {
-            if (!(Node == null)) {
-                inOrder(Node.left);
-                document.write("traversed " + Node.show() + "<br>");
-                inOrder(Node.right);
+            function inOrder(Node) {
+                if (!(Node == null)) {
+                    inOrder(Node.left);
+                    display.innerHTML += ("traversed " + Node.show() + "<br>");
+                    inOrder(Node.right);
+                }
             }
-        }
 
-        function preOrder(Node) {
-            if (!(Node == null)) {
-                document.write("traversed " + Node.show() + "<br>");
-                preOrder(Node.left);
-                preOrder(Node.right);
+            function preOrder(Node) {
+                if (!(Node == null)) {
+                    display.innerHTML += ("traversed " + Node.show() + "<br>");
+                    preOrder(Node.left);
+                    preOrder(Node.right);
+                }
             }
-        }
 
-        function postOrder(Node) {
-            if (!(Node == null)) {
-                postOrder(Node.left);
-                postOrder(Node.right);
-                document.write("traversed " + Node.show() + "<br>");
+            function postOrder(Node) {
+                if (!(Node == null)) {
+                    postOrder(Node.left);
+                    postOrder(Node.right);
+                    display.innerHTML += ("traversed " + Node.show() + "<br>");
+                }
             }
-        }
 
-        function main(){
-            document.write("Building the tree with root value 50<br>");
-            var nums = new BST();
+            display.innerHTML += ("Building the tree with root value 50<br>");
+            nums = new BST();
             nums.insert(50);
             nums.insert(30);
             nums.insert(45);
             nums.insert(12);
             nums.insert(29);
-            document.write("<br>Inorder Traversal:<br>")
+            display.innerHTML += ("<br>Inorder Traversal:<br>");
             inOrder(nums);
+            display.innerHTML += ("Searching for 27 . . .<br>");
+            nums.find(27, "display");
+        }
+
+        function userSearch() {
+            let searchResult = document.getElementById("searchResults");
+            if (searchResult != ""){
+                searchResult.innerHTML = ""
+            }
+            var val = document.getElementById("val").value;
+            nums.find(val, "searchResults");
+            // document.write(val);
         }
     </script>
-    <body>
-        <span onload="main()"></span><br>
-        <label for="val">Input a number to search for: </label>
-        <input type="number"name="val" id="val"/>
-        <button onclick="nums.find()">Search</button>
-    </body>
+
+<body onload="main()">
+    <span id="display" name="display"></span>
+    <label for="val">Input a number to search for: </label>
+    <input type="number" name="val" id="val" />
+    <button name="search" id="search" onclick="userSearch()">Search</button><br>
+    <span id="searchResults" name="searchResults"></span>
+</body>
 </head>
 
 </html>
