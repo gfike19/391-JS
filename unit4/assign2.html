@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Unit 4 Assignment 2</title>
+    <script type="text/javascript">
+        function main() {
+            var studentGrades = [65, 95, 75, 55, 56, 90, 98, 88, 97, 78];
+
+            function sortArrayDes(array) {
+                var swapped;
+                do {
+                    swapped = false;
+                    for (var i = 0; i < array.length; i++) {
+                        if (array[i] < array[i + 1]) {
+                            var temp = array[i];
+                            array[i] = array[i + 1];
+                            array[i + 1] = temp;
+                            swapped = true;
+                        }
+                    }
+                } while (swapped);
+            }
+
+            function sortArrayAsc(array) {
+                var swapped;
+                do {
+                    swapped = false;
+                    for (var i = 0; i < array.length; i++) {
+                        if (array[i] > array[i + 1]) {
+                            var temp = array[i];
+                            array[i] = array[i + 1];
+                            array[i + 1] = temp;
+                            swapped = true;
+                        }
+                    }
+                } while (swapped);
+            }
+
+            function printArray(array) {
+                let asc = array.copyWithin(0);
+                let dsc = array.copyWithin(0);
+                
+                document.write("Bubble Sort Descending.<br>");
+                sortArrayDes(dsc);
+                dsc.forEach((element) => {
+                    document.write(element + " ");
+                })
+
+                document.write("<br>Bubble Sort Ascending.<br>");
+                sortArrayAsc(asc);
+                asc.forEach((element) => {
+                    document.write(element + " ");
+                });
+            }
+            printArray(studentGrades);
+        }
+    </script>
+</head>
+
+<body onload="main()"></body>
+
+</html>
