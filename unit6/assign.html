@@ -4,94 +4,23 @@
 <head>
     <title>Unit 6 Assignment</title>
     <script src="assign.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
-<body onload="main()">
-    <form method=post>
-        <a href="/return-files/" target="blank"><button class='btn btn-default'>Download!</button></a>
-        <h2>Message</h2>
-        <label>Enter text here:
-            <input type="text" name="msg" id="msg"/>
-        </label>
-        <br>
-        <label>Text size:
-            <input type="number" name="text_size" id="text_size"/>
-        </label>
-        <span>
-            <h2>Image Dimensions (in pixels)</h2>
+<body>
+    <div className="container">
+        <div className="form form-group"><label htmlfor="msg">Enter text: </label>
+            <input type="text" id="msg" name="msg" /></div>
+        <div className="form form-group"><label htmlfor="wid">Width</label>
+            <input type="text" id="wid" name="wid" /></div>
+        <div className="form form-group"><label htmlfor="wid">Height</label>
+            <input type="text" id="ht" name="ht" /></div>
 
-            <label>Width:
-                <input type="number" name="wid" id="wid"/>
-            </label>
-            <label>Height:
-                <input type="number" name="ht" id="ht" />
-            </label>
-        </span>
-        <span>
-            <h2>Color Scheme</h2>
-            <label>Text color:
-                <input type="color" name="txt_color" id="txt_color"/>
-            </label>
-            <label>Background color:
-                <input type="color" name="back_color" id="back_color"/>
-            </label>
-        </span>
-        <p>
-        <h1>Additional options</h1>
-        Text direction
-        <br>
-        <label>Right to left
-            <input type="radio" name="dir" value="rtl" id="dire"/>
-        </label>
-        <label>Left to right
-            <input type="radio" name="dir" value="ltr" id="dire" />
-        </label>
-        <label>Top to bottm
-            <input type="radio" name="dir" value="ttb" id="dire" />
-        </label>
-        <label>Bottom to top
-            <input type="radio" name="dir" value="btt" id="dire" />
-        </label>
-        </p>
-        Text format
-        <br>
-        <label>Plaintext
-            <input type="radio" name="tType" id="tType" value="plain">
-        </label>
-        <label>Binary
-            <input type="radio" name="tType" id="tType" value="bin"/>
-        </label>
-        <p>
-            <label>Text style:
-                <select name="font">
-                    <option name="arial" id="arial">Arial</option>
-                    <option name="arialb" id="arialb">Arial Black</option>
-                    <option name="cent" id="cent">Century Gothic</option>
-                    <option name="comic" id="comic">Comic Sans MS</option>
-                    <option name="courier" id="courier">Courier New</option>
-                    <option name="georgia" id="georgia">Georgia</option>
-                    <option name="impact" id="impact">Impact</option>
-                    <option name="lg" id="lg">Lucida Grande</option>
-                    <option name="pal" id="pal">Palatino</option>
-                    <option name="tahoma" id="tahoma">Tahoma</option>
-                    <option name="times" id="times">Times New Roman</option>
-                    <option value="tre" id="treb">Trebuchet MS</option>
-                    <option value="ver" id="ver">Verdana</option>
-                </select>
-            </label>
-        </p>
-        <span>Image rotation
-            <input type="number" name="rot" id="rot"/>
-        </span>
-        <br>
-        <label>Image type
-            <select name="ext">
-                <option name=".jpg" id=".jpg" >JPG</option>
-                <option name=".gif" id=".gif">GIF</option>
-                <option name=".bmp" id=".bmp">BMP</option>
-            </select>
-        </label>
-    </form>
+        <button name="submit" id="submit" onclick="main()" className="btn btn-primary">Submit</button>
+        <hr />
+        <span id="disp" name="disp" className="alerts alert-danger"></span>
+    </div>
 </body>
 
 </html>
