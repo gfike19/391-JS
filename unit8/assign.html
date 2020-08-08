@@ -2,19 +2,89 @@
 <html>
 
 <head>
-    <meta charset="utf-8" lang="eng" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?key=AIzaSyC6Gb_Dtv00W4QWtFoApeKvAH9Wr5z2Qw8" async defer></script>
-    <script type="text/javascript" src="assign.js">
+    <meta charset="UTF-8">
+    <title>Geocoding Service</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVD0ngfhOFs5rnww7UFyz9rN6UznOIZ1U&callback=initMap&libraries=&v=weekly"
+        defer></script> -->
+        <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVD0ngfhOFs5rnww7UFyz9rN6UznOIZ1U&v=3.exp"
+        defer></script>
+    <style type="text/css">
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: "Roboto", "sans-serif";
+            line-height: 30px;
+            padding-left: 10px;
+        }
+    </style>
+    <script>
+        "use strict";
+        window.onload = (event) => {
+            function initMap() {
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 8,
+                center: {
+                    lat: -34.397,
+                    lng: 150.644
+                }
+            });
+            const geocoder = new google.maps.Geocoder();
+            document.getElementById("submit").addEventListener("click", () => {
+                geocodeAddress(geocoder, map);
+            });
+        }
+        initMap();
+        function geocodeAddress(geocoder, resultsMap) {
+            // const address = document.getElementById("address").value;
+            const address = document.getElementById("addr").value + " " + document.getElementById("city").value + " "
+            + document.getElementById("state").value + " " + document.getElementById("zip").value;
+            geocoder.geocode(
+                {
+                    address: address
+                },
+                (results, status) => {
+                    if (status === "OK") {
+                        resultsMap.setCenter(results[0].geometry.location);
+                        new google.maps.Marker({
+                            map: resultsMap,
+                            position: results[0].geometry.location
+                        });
+                    } else {
+                        alert(
+                            "Geocode was not successful for the following reason: " + status
+                        );
+                    }
+                }
+            );
+        }
+        };
     </script>
-    <!-- <script type="text/javascript">
-        
-    </script> -->
-    <title>Unit 8</title>
 </head>
 
-<body onload="initMap()">
+<body>
     <form>
         <div class="form form-group">
             <label htmlfor="addr">Address:</label>
@@ -83,10 +153,10 @@
                 <label htmlfor="zip">Zip Code: </label>
                 <input type="text" id="zip" name="zip" />
             </div>
-            <button class="button btn-primary" name="submit" id="submit">Submit</button>
         </div>
-        <div id="map_canvas" style="width:50%; height:50%"></div>
+        <input id="submit" type="button" value="Geocode" />
     </form>
+    <div id="map" style="width:100%; height:100%"></div>
 </body>
 
 </html>
