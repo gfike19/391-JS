@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8"/>
+    <title>Geocoding Service</title>
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6Gb_Dtv00W4QWtFoApeKvAH9Wr5z2Qw8&callback=initMap&libraries=&v=weekly" async defer
+      defer
+    ></script>
+  <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script src="/test.js"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAVD0ngfhOFs5rnww7UFyz9rN6UznOIZ1U&callback=initMap" async defer></script>
+<script>
+  var user_lat,user_lng;
+  var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat:17, lng: 80},
+      zoom: 5
+    });
+    var marker = new google.maps.Marker({
+      position: {lat:17,lng:80},
+      map: map,
+      title: 'Hello World!'
+    }); 
+  }
+</script>
+  </head>
+  <body onload="initMap()">
+    <div id="floating-panel">
+      <input id="address" type="textbox" value="Sydney, NSW" />
+      <input id="submit" type="button" value="Geocode" />
+    </div>
+    <div id="map"></div>
+  </body>
+</html>
