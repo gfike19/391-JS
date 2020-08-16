@@ -23,7 +23,77 @@ document.addEventListener('deviceready', onDeviceReady, false);
 
 function onDeviceReady() {
     // Cordova is now initialized. Have fun!
+    var submit = document.getElementById("submit");
+    var bin = document.getElementById("bin");
+    var binVal = null;
 
-    console.log('Running cordova-' + cordova.platformId + '@' + cordova.version);
-    document.getElementById('deviceready').classList.add('ready');
+    bin.onclick = () => {
+        binVal = document.getElementById("bin");
+    }
+
+    submit.onclick = () => {
+        checkForCanvas();
+        var msg = document.getElementById("msg").value + " ";
+        var wid = document.getElementById("wid").value;
+        var ht = document.getElementById("ht").value;
+        var bckColor = document.getElementById("bckColor").value;
+        var txtColor = document.getElementById("txtColor").value;
+        
+        if(binVal == true) {
+            msg = binConv(msg);
+        }
+        genImage(msg, wid, ht, bckColor, txtColor);
+    }
+
+    var clear = document.getElementById("clear");
+    clear.onclick = () => {
+        console.log(typeof(document.getElementById("bin").checked));
+        checkForCanvas();
+        document.getElementById("msg").value = "";
+        document.getElementById("wid").value = "";
+        document.getElementById("ht").value = "";
+        document.getElementById("bckColor").value = "#000000";
+        document.getElementById("txtColor").value = "#000000";
+    }
+}
+
+function genImage(msg, wid, ht, bckColor, txtColor) {
+    let canvas = document.createElement('canvas');
+    context = canvas.getContext("2d");
+    let container = document.createElement('div');
+    document.body.appendChild(container);
+    container.appendChild(canvas);
+    canvas.width = wid;
+    canvas.height = ht;
+    context.fillStyle = bckColor;
+    context.fillRect(0, 0, wid, ht);
+    context.font = "12px Times New Roman";
+    context.fillStyle = txtColor;
+    let idx = 0;
+
+    for (let x = 0; x < ht; x += 18) {
+        for (let y = 0; y < wid; y += 18) {
+            context.fillText(msg[idx], y, x)
+            idx++;
+
+            if (idx > msg.length - 1) {
+                idx = 0;
+            }
+        }
+    }
+}
+
+function checkForCanvas() {
+    let element = document.getElementById("theForm").nextSibling;
+    if (typeof (element) != 'undefined' && element != null) {
+        element.parentNode.removeChild(element);
+    }
+}
+
+function binConv(msg) {
+    let binMsg = "";
+    for (var i = 0; i < msg.length; i++) {
+        binMsg += msg[i].charCodeAt(0).toString(2) + " ";
+    }
+    return binMsg;
 }

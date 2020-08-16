@@ -35,15 +35,45 @@
         <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
         <meta name="color-scheme" content="light dark">
         <link rel="stylesheet" href="css/index.css">
-        <title>Hello World</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <title>Unit 10</title>
     </head>
     <body>
         <div class="app">
-            <h1>Apache Cordova</h1>
+            <!-- <h1>Apache Cordova</h1>
             <div id="deviceready" class="blink">
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
-            </div>
+            </div> -->
+            <form id="theForm" name="theForm">
+                <div clasName="container">
+                    <div className="row">
+                        <label htmlfor="msg" style="vertical-align: top;">Enter text here:</label>
+                        <textarea id="msg" name="msg" rows="5" cols="50">Hello World!</textarea>
+                    </div>
+                    <hr />
+                    <div className="row">
+                        <label htmlfor="wid">Width: </label>
+                        <input type="number" name="wid" id="wid" value="1024"/>
+                        <label htmlfor="ht">Height: </label>
+                        <input type="number" name="ht" id="ht" value="768"/>
+                    </div>
+                    <div className="row">
+                        <label htmlfor="bckColor">Background Color</label>
+                        <input type="color" name="bckColor" id="bckColor" value="#0D0208"/>
+                        <label htmlfor="txtColor">Text Color</label>
+                        <input type="color" name="txtColor" id="txtColor" value="#00FF41"/>
+                        <label htmlfor="bin">Binary? </label>
+                        <input type="checkbox" id="bin" id="bin"/>
+                    </div>
+                    <hr />
+                </div>
+                <div className="row">
+                    <button type="button" class="btn btn-primary" name="submit" id="submit">Submit</button>
+                    <button type="button" class="btn" name="clear" id="clear">Clear</button>
+                </div>
+            </form>
         </div>
         <script src="cordova.js"></script>
         <script src="js/index.js"></script>
